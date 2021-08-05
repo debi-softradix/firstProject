@@ -25,12 +25,16 @@ export class ServiceService {
 
   getAllUsers(token:string) {
 
-    debugger
     let headers = new HttpHeaders();
-    headers = headers.append('token', token);
+    headers = headers.append('authorization', token);
 
     let url = "http://localhost:3030/user_list";
-    return this._http.post<any>(url,{headers:headers});
+    return this._http.get<any>(url,{headers:headers});
+  }
+
+  getEditUsers(){
+    let url = "http://localhost:3030/get_user_byId/:5";
+    return this._http.get<any>(url);
   }
 
 }

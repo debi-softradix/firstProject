@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class RegistrationComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private _apiService: ServiceService, private router:Router) { }
+  constructor(private fb: FormBuilder, private _apiService: ServiceService, private router: Router) { }
 
   submitted = false;
   isPasswordMatched: boolean = false;
@@ -37,7 +37,7 @@ export class RegistrationComponent implements OnInit {
   get registrationFormControl() {
     return this.registration.controls;
   }
-  
+
   onBlurPassword() {
     this.passwordErrorMsg = "password and confirm password did not match";
     if (this.registration.value.password !== this.registration.value.confirmpassword) {
@@ -56,7 +56,6 @@ export class RegistrationComponent implements OnInit {
   }
   registerUser() {
     this.submitted = true;
-    debugger
     if (this.registration.valid) {
       this.registrationData = this.registration.value;
       delete this.registrationData["confirmpassword"]
@@ -64,24 +63,23 @@ export class RegistrationComponent implements OnInit {
       console.log(this.registration.value);
 
       this._apiService.registerUser(this.registrationData)
-      .subscribe(
-        result => {
+        .subscribe(
+          result => {
 
-          console.log("response data", result);
-          if (result["status"] == false) {
+            console.log("response data", result);
+            if (result["status"] == false) {
 
-            swal(result["message"]);
+              swal(result["message"]);
+            }
+            else {
+
+              this.showSuccessAlert()
+            }
+          },
+          error => {
+
           }
-          else {
-
-            this.showSuccessAlert()
-          }
-        },
-        error => {
-
-        }
-      )
-
+        )
     }
   }
 

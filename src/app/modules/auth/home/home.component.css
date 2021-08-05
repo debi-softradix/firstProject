@@ -1,0 +1,17 @@
+button{
+    color:brown;
+    background-color:aqua;
+    align-content: center;
+}
+table,td,th{
+    border:1px solid black;
+    text-align: center;
+    font-size: 20px;
+    background-color:peachpuff;
+    font-family:monospace; 
+
+}
+th, td {
+    padding: 15px;
+    color: blue;
+  }

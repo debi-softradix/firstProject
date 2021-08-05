@@ -1,28 +1,27 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RegistrationComponent } from './registration/registration.component';
-import { LoginComponent } from './login/login.component'
+import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
+import { UserprofileComponent } from './userprofile/userprofile.component';
 
 const routes: Routes = [
   {
-    path:'Registration',
-    component:RegistrationComponent
+    path: 'Registration',
+    component: RegistrationComponent
   },
   {
-    path:'Login',
-    component:LoginComponent
+    path: 'Login',
+    component: LoginComponent
   },
   {
-    path:'Home',
-    component:HomeComponent
+  path:'Home',
+  component:HomeComponent
+  },
+  {
+    path:'Userprofile',
+    component:UserprofileComponent
   }
-  
-    // {
-    //   path: 'dashboard', loadChildren: () => import('src/app/dashboard/dashboard.module')
-    //     .then(mod => mod.DashboardModule)
-    // }
-  
 ];
 
 @NgModule({

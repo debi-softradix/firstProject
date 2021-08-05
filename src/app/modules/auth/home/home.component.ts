@@ -11,9 +11,11 @@ export class HomeComponent implements OnInit {
 
   constructor(private router: Router, private _apiService: ServiceService) { }
 
+  usersArray: any;
+
   ngOnInit(): void {
 
-    this.getUsers()
+    this.getUsers();
   }
 
   logoutUser() {
@@ -28,29 +30,31 @@ export class HomeComponent implements OnInit {
 
   getUsers() {
 
-    debugger
     const userToken = localStorage.getItem('token');
     if (userToken !== null) {
 
       console.log("home token = ", userToken);
 
       this._apiService.getAllUsers(userToken)
-      .subscribe(
-        result => {
-          console.log("result is", result);
+        .subscribe(
+          result => {
+            console.log("result is", result);
+            if (result["status"] == true) {
+              this.usersArray = result["data"];
+              console.log("usersArray =", this.usersArray);
+            }
+          },
 
-          if (result["status"] == true) {
-
+          error => {
+            console.log('error', error)
           }
-        },
-        error => {
-          console.log('error', error)
-        }
-      )
+        )
     }
 
-
-    
+  }
+  editProfile(userId:any){  
+    console.log("Id is",userId)
+     this.router.navigate(['auth/Userprofile/'])
   }
 
 }

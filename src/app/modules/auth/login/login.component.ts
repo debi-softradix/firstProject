@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
               let data = result["data"];
               let token = data["token"];
 
-              console.log("Token =",token);
+              console.log("Token =", token);
 
               localStorage.setItem('token', token)
 
@@ -72,7 +72,6 @@ export class LoginComponent implements OnInit {
     })
       .then(okClick => {
         if (okClick) {
-          debugger
           this.router.navigate(['auth/Home/'])
         }
       });

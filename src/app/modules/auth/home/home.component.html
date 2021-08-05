@@ -1,0 +1,33 @@
+<div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+    <button type="button" (click)=logoutUser() class="btn btn-primary btn-lg">Logout</button>
+</div>
+<div>
+    <br>
+    <table width="100%">
+        <tbody>
+            <tr>
+                <td>Id</td>
+                <td>Firstname</td>
+                <td>Lastname</td>
+                <td>Email</td>
+                <td>Phone_no</td>
+                <td>edit/delete</td>
+            </tr>
+
+            <tr *ngFor="let user of usersArray">
+                <td> {{user["id"]}} </td>
+                <td> {{user["firstname"]}} </td>
+                <td> {{user["lastname"]}} </td>
+                <td> {{user["email"]}}</td>
+                <td> {{user["phone_no"]}} </td>
+                <td> <button type="button" id="{{user['id']}}" (click)="editProfile(user['id'])"
+                        value="edit">Edit</button>
+                    <button type="button" value="delete">Delete</button>
+                </td>
+
+            </tr>
+
+        </tbody>
+
+        <body>
+            <table>
