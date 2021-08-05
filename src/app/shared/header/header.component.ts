@@ -10,6 +10,10 @@ export class HeaderComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
+  checkLogin() {
+    return localStorage.getItem("loggedIn") ? true : false
+  }
 }

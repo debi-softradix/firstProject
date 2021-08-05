@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import swal from 'sweetalert';
+import { ServiceService } from 'src/app/shared/service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -9,7 +11,7 @@ import swal from 'sweetalert';
 })
 export class RegistrationComponent implements OnInit {
 
-  constructor(private fb: FormBuilder,) { }
+  constructor(private fb: FormBuilder, private _apiService: ServiceService, private router:Router) { }
 
   submitted = false;
   isPasswordMatched: boolean = false;
@@ -31,9 +33,11 @@ export class RegistrationComponent implements OnInit {
     phone_no: new FormControl('', Validators.required),
     age: new FormControl('', Validators.required)
   })
+
   get registrationFormControl() {
     return this.registration.controls;
   }
+  
   onBlurPassword() {
     this.passwordErrorMsg = "password and confirm password did not match";
     if (this.registration.value.password !== this.registration.value.confirmpassword) {
@@ -52,11 +56,46 @@ export class RegistrationComponent implements OnInit {
   }
   registerUser() {
     this.submitted = true;
+    debugger
     if (this.registration.valid) {
       this.registrationData = this.registration.value;
       delete this.registrationData["confirmpassword"]
       console.log("registration data is", this.registrationData)
       console.log(this.registration.value);
+
+      this._apiService.registerUser(this.registrationData)
+      .subscribe(
+        result => {
+
+          console.log("response data", result);
+          if (result["status"] == false) {
+
+            swal(result["message"]);
+          }
+          else {
+
+            this.showSuccessAlert()
+          }
+        },
+        error => {
+
+        }
+      )
+
     }
+  }
+
+  showSuccessAlert() {
+    swal({
+      title: "Done",
+      text: "User added successfully",
+      icon: "warning",
+      dangerMode: true,
+    })
+      .then(okClick => {
+        if (okClick) {
+          this.router.navigate(['auth/Login/'])
+        }
+      });
   }
 }

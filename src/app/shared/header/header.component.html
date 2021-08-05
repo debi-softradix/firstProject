@@ -1,1 +1,9 @@
-<p>header works!</p>
+  <ul>
+    <li>
+      <a *ngIf = "!checkLogin()" routerLink="auth/Registration">Registration</a>
+    </li>
+  
+    <li>
+      <a *ngIf = "!checkLogin()" routerLink="auth/Login">Login</a>
+    </li>
+  </ul>
