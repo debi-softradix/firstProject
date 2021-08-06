@@ -44,7 +44,6 @@ export class HomeComponent implements OnInit {
               console.log("usersArray =", this.usersArray);
             }
           },
-
           error => {
             console.log('error', error)
           }
@@ -52,9 +51,9 @@ export class HomeComponent implements OnInit {
     }
 
   }
-  editProfile(userId:any){  
+  editProfile(userId:string){  
     console.log("Id is",userId)
-     this.router.navigate(['auth/Userprofile/'])
+     this.router.navigate(['auth/Userprofile/', {state: {id:userId}}]);
   }
 
 }

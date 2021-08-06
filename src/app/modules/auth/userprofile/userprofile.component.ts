@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiceService } from 'src/app/shared/service.service';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-userprofile',
@@ -8,32 +9,31 @@ import { ServiceService } from 'src/app/shared/service.service';
 })
 export class UserprofileComponent implements OnInit {
 
-  constructor(private _apiService: ServiceService) { }
+  constructor(private _apiService: ServiceService, private activatedRoute: ActivatedRoute) { }
+
+  userId: string = "1";
 
   ngOnInit(): void {
+
+    this.activatedRoute.paramMap.subscribe(params => {
+      //this.userId = params.get('id');
+      console.log("edit user id is", params)
+      this.getUserDetails(this.userId);
+    });
   }
-  // getEditUsers() {
-  //   this._apiService.getEditUsers(this.getEditUsers)
-  //     .subscribe(
-  //       result => {
-  //         console.log("response data", result);
 
-  //       })
-  // getEditUsers(){
-  // this._apiService.(Id:any)
-  //       .subscribe(
-  //         result => {
-  //           console.log("result is", result);
-  //           if (result["status"] == true) {
-              
-  //             console.log("result",usersId);
-  //           }
-  //         },
+  getUserDetails(userId: any) {
+    this._apiService.getUserDetails(userId)
+      .subscribe(
+        result => {
+          console.log("result is", result);
+        },
+        error => {
+          console.log('error', error);
+        }
+      )
 
-  //         error => {
-  //           console.log('error', error)
-  //         }
-  //       )
-  
+  }
+
 }
 

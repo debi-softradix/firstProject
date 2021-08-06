@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
 
               localStorage.setItem('loggedIn', 'TRUE')
 
-              let data = result["data"];
+              let data = result["data"]; 
               let token = data["token"];
 
               console.log("Token =", token);
