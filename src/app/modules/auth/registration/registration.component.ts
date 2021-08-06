@@ -87,7 +87,7 @@ export class RegistrationComponent implements OnInit {
     swal({
       title: "Done",
       text: "User added successfully",
-      icon: "warning",
+      // icon: "warning",
       dangerMode: true,
     })
       .then(okClick => {

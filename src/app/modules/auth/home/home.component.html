@@ -13,7 +13,6 @@
                 <td>Phone_no</td>
                 <td>edit/delete</td>
             </tr>
-
             <tr *ngFor="let user of usersArray">
                 <td> {{user["id"]}} </td>
                 <td> {{user["firstname"]}} </td>
@@ -22,12 +21,10 @@
                 <td> {{user["phone_no"]}} </td>
                 <td> <button type="button" id="{{user['id']}}" (click)="editProfile(user['id'])"
                         value="edit">Edit</button>
-                    <button type="button" value="delete">Delete</button>
+                    <button type="button" id="{{user['id']}}" (click)="deleteUserDetails(user['id'])"
+                        value="delete">Delete</button>
                 </td>
-
             </tr>
-
         </tbody>
-
         <body>
             <table>

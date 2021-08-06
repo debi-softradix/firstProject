@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
 
               localStorage.setItem('loggedIn', 'TRUE')
 
-              let data = result["data"]; 
+              let data = result["data"];
               let token = data["token"];
 
               console.log("Token =", token);
@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit {
     swal({
       title: "Done",
       text: "Login successfully",
-      icon: "warning",
+      // icon: "warning",
       dangerMode: true,
     })
       .then(okClick => {
